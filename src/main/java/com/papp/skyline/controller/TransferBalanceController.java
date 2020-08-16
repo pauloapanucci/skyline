@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 @Controller
-@RequestMapping("api/balances")
+@RequestMapping("balances")
 public class TransferBalanceController {
 
     @Autowired

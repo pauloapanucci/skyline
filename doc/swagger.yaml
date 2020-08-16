@@ -2,7 +2,6 @@ openapi: 3.0.1
 info:
   title: Skyline
   description: 'This is Skyline app API documentation. More Skyline app info on [Skyline github project page](https://github.com/pauloapanucci/skyline)'
-  termsOfService: http://swagger.io/terms/
   contact:
     email: pauloapanucci@gmail.com
   license:
@@ -12,6 +11,8 @@ info:
 externalDocs:
   description: Find out more about Swagger
   url: http://swagger.io
+servers:
+  - url: http://localhost:8090/skyline/api
 tags:
 - name: users
   description: Operations about users
@@ -21,6 +22,8 @@ tags:
   description: Bitcoins buy operation to users wallets
 - name: wallets
   description: Wallets consult
+- name: actuator
+  description: Application information
 paths:
   /users:
     post:
@@ -227,7 +230,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TransactionsItem'
+                $ref: '#/components/schemas/Transactions'
         400:
           description: malformed request (without cpf parameter);
         500:
@@ -249,6 +252,26 @@ paths:
                 $ref: '#/components/schemas/Value'
         500:
           description: application error;
+  /info:
+    get:
+      tags:
+        - actuator
+      summary: Application general info
+      description: Returns pplication general info as version, build, application name...
+      operationId: info
+      responses:
+        200:
+          description: return json with api general info
+  /health:
+    get:
+      tags:
+        - actuator
+      summary: Application general health info
+      description: Returns pplication general health info as if app is up, if database is up, which database being used...
+      operationId: health
+      responses:
+        200:
+          description: return json with api general helth info
 components:
   schemas:
     Transaction:

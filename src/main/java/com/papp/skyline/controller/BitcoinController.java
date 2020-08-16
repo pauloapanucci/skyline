@@ -15,13 +15,13 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 @Controller
-@RequestMapping("api/bitcoins")
+@RequestMapping("bitcoins")
 public class BitcoinController {
 
     @Autowired
     private WalletService walletService;
 
-    @PostMapping("buy")
+    @PostMapping("/buy")
     public ResponseEntity<ValueDTO> buy(@RequestBody TransactionDTO transaction){
 
         if(Objects.isNull(transaction.getCpf()) || Objects.isNull(transaction.getAmount())) {

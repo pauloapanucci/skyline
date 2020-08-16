@@ -1,0 +1,412 @@
+{
+	"info": {
+		"_postman_id": "cc33f779-2b26-479e-9772-40fdc4cc3398",
+		"name": "Skyline",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Paulo\",\n    \"cpf\": \"01234567890\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/skyline/api/users",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"skyline",
+								"api",
+								"users"
+							]
+						},
+						"description": "create a user by a name and cpf"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Balances",
+			"item": [
+				{
+					"name": "Transfer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cpf\": \"01234567890\",\n    \"amount\": 2500\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/skyline/api/balances/transfer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"skyline",
+								"api",
+								"balances",
+								"transfer"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Bitcoins",
+			"item": [
+				{
+					"name": "buy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cpf\": \"01234567890\",\n    \"amount\": 0.01\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/skyline/api/bitcoins/buy",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"skyline",
+								"api",
+								"bitcoins",
+								"buy"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Wallet",
+			"item": [
+				{
+					"name": "Current BRL Balance",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/skyline/api/wallets/currentbrlbalance?cpf=01234567890",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"skyline",
+								"api",
+								"wallets",
+								"currentbrlbalance"
+							],
+							"query": [
+								{
+									"key": "cpf",
+									"value": "01234567890"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Current BTC Balance",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/skyline/api/wallets/currentbtcbalance?cpf=01234567890",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"skyline",
+								"api",
+								"wallets",
+								"currentbtcbalance"
+							],
+							"query": [
+								{
+									"key": "cpf",
+									"value": "01234567890"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Total BRL Amount Invested In BTC",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/skyline/api/wallets/totalbrlamountinvestedinbtc?cpf=01234567890",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"skyline",
+								"api",
+								"wallets",
+								"totalbrlamountinvestedinbtc"
+							],
+							"query": [
+								{
+									"key": "cpf",
+									"value": "01234567890"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Profit Since First BTC Transaction",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/skyline/api/wallets/profitsincefirstbtctransaction?cpf=01234567890",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"skyline",
+								"api",
+								"wallets",
+								"profitsincefirstbtctransaction"
+							],
+							"query": [
+								{
+									"key": "cpf",
+									"value": "01234567890"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Last 5 Transactions",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/skyline/api/wallets/last5transactions?cpf=01234567890",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"skyline",
+								"api",
+								"wallets",
+								"last5transactions"
+							],
+							"query": [
+								{
+									"key": "cpf",
+									"value": "01234567890"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Current BTC Value",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/skyline/api/wallets/currentbtcvalue",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"skyline",
+								"api",
+								"wallets",
+								"currentbtcvalue"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "actuator",
+			"item": [
+				{
+					"name": "Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/skyline/api/actuator/health",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"skyline",
+								"api",
+								"actuator",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/skyline/api/actuator/info",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"skyline",
+								"api",
+								"actuator",
+								"info"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

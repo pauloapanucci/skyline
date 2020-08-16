@@ -15,6 +15,7 @@ services:
       - MYSQL_USER=skyline
       - MYSQL_PASSWORD=skyline
       - MYSQL_DATABASE=skylinedb
+      - TZ=America/Sao_Paulo
   api-service:
     build:
       context: ./

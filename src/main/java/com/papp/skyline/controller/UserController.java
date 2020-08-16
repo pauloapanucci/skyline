@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.Objects;
 
 @Controller
-@RequestMapping("api")
 public class UserController{
 
     @Autowired
