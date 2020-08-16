@@ -1,6 +1,7 @@
 # building skyline app stage
 FROM openjdk:8-jdk-alpine as build
 
+ENV TZ=America/Sao_Paulo
 WORKDIR /app
 
 COPY mvnw .
@@ -17,6 +18,7 @@ RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
 # running skyline app stage
 FROM openjdk:8-jre-alpine as production
+ENV TZ=America/Sao_Paulo
 ARG DEPENDENCY=/app/target/dependency
 
 # copying build artifacts to run skyline app
