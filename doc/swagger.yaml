@@ -1,0 +1,300 @@
+openapi: 3.0.1
+info:
+  title: Skyline
+  description: 'This is Skyline app API documentation. More Skyline app info on [Skyline github project page](https://github.com/pauloapanucci/skyline)'
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: pauloapanucci@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+tags:
+- name: users
+  description: Operations about users
+- name: balances
+  description: Balances transfer operation to users wallets
+- name: bitcoins
+  description: Bitcoins buy operation to users wallets
+- name: wallets
+  description: Wallets consult
+paths:
+  /users:
+    post:
+      tags:
+      - users
+      summary: Create user
+      description: Create a user. After this a wallet is created for the user
+      operationId: createUser
+      requestBody:
+        description: user to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        201:
+          description: Created user object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        200:
+          description: User already exists; not created;
+        400:
+          description: malformed request (forgot name, cpf or both);
+        500:
+          description: application error;
+      x-codegen-request-body-name: body
+  /balances/transfer:
+    post:
+      tags:
+      - balances
+      summary: Transfer Brazilian Real amount to wallet
+      description: Transfer Brazilian Real amount to users wallets
+      operationId: transferBalance
+      requestBody:
+        description: cpf to identify the user and amount to transfer
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Transaction'
+        required: true
+      responses:
+        200:
+          description: transaction suceeded. return current Brazilian Real wallet balance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Value'
+        400:
+          description: malformed request (forgot cpf, amount or both);
+        500:
+          description: application error (0 or negative transfer, or other app error);
+      x-codegen-request-body-name: body
+  /bitcoins/buy:
+    post:
+      tags:
+      - bitcoins
+      summary: Buy Bitcoin to wallet
+      description: Buy Bitcoin to wallet using Brazilian Real available balance
+      operationId: buy
+      requestBody:
+        description: cpf to identify the user and amount to buy
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Transaction'
+        required: true
+      responses:
+        200:
+          description: transaction suceeded. return current Bitcoin wallet balance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Value'
+        400:
+          description: malformed request (forgot cpf, amount or both);
+        500:
+          description: application error (0 or negative amount to buy, or other app error);
+      x-codegen-request-body-name: body
+  /wallets/currentbrlbalance/{cpf}:
+    get:
+      tags:
+      - wallets
+      summary: Current Brazilian Real Balance from user
+      description: Returns current Brazilian Real Balance from a User Wallet
+      operationId: getCurrentBrlValue
+      parameters:
+      - name: cpf
+        in: path
+        description: cpf number from wallet owner
+        required: true
+        schema:
+          type: string
+          format: string
+      responses:
+        200:
+          description: balance returned;
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Value'
+        400:
+          description: malformed request (without cpf parameter);
+        500:
+          description: user not exists or application error;
+  /wallets/currentbtcbalance/{cpf}:
+    get:
+      tags:
+      - wallets
+      summary: Current Bitcoin Balance from user
+      description: Returns current Bitcoin Balance from a User Wallet
+      operationId: getCurrentBtcValue
+      parameters:
+      - name: cpf
+        in: path
+        description: cpf number from wallet owner
+        required: true
+        schema:
+          type: string
+          format: string
+      responses:
+        200:
+          description: balance returned;
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Value'
+        400:
+          description: malformed request (without cpf parameter);
+        500:
+          description: user not exists or application error;
+  /wallets/totalbrlamountinvestedinbtc/{cpf}:
+    get:
+      tags:
+      - wallets
+      summary: Total Brazilian Real amount invested in Bitcoin
+      description: Returns total Brazilian Real amount invested in Bitcoin from user wallet
+      operationId: getAmountOfBrlInvestedInBtc
+      parameters:
+      - name: cpf
+        in: path
+        description: cpf number from wallet owner
+        required: true
+        schema:
+          type: string
+          format: string
+      responses:
+        200:
+          description: total returned;
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Value'
+        400:
+          description: malformed request (without cpf parameter);
+        500:
+          description: user not exists or application error;
+  /wallets/profitsincefirstbtctransaction/{cpf}:
+    get:
+      tags:
+      - wallets
+      summary: Total Profit (or loss) since first Bitcoin transaction
+      description: Returns total Profit (or loss) since first Bitcoin transaction from user
+      operationId: getBtcProfitSoFar
+      parameters:
+      - name: cpf
+        in: path
+        description: cpf number from wallet owner
+        required: true
+        schema:
+          type: string
+          format: string
+      responses:
+        200:
+          description: profit returned;
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Value'
+        400:
+          description: malformed request (without cpf parameter);
+        500:
+          description: user not exists or application error;
+  /wallets/last5transactions/{cpf}:
+    get:
+      tags:
+      - wallets
+      summary: Last 5 user transactions
+      description: Returns last 5 user transactions on its wallet
+      operationId: getLast5Transactions
+      parameters:
+      - name: cpf
+        in: path
+        description: cpf number from wallet owner
+        required: true
+        schema:
+          type: string
+          format: string
+      responses:
+        200:
+          description: last 5 transactions. transactionType could be BITCOIN_ACQUISITION or MONEY_TRANSFER;
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionsItem'
+        400:
+          description: malformed request (without cpf parameter);
+        500:
+          description: user not exists or application error;
+  /wallets/currentbtcvalue:
+    get:
+      tags:
+      - wallets
+      summary: Current Bitcoin value in Brazilian Real
+      description: Returns current Bitcoin value in Brazilian Real
+      operationId: getBtcPriceInBrl
+  
+      responses:
+        200:
+          description: value returned;
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Value'
+        500:
+          description: application error;
+components:
+  schemas:
+    Transaction:
+      type: object
+      properties:
+        cpf:
+          type: string
+        amount:
+          type: number
+      xml:
+        name: User
+    User:
+      type: object
+      properties:
+        name:
+          type: string
+        cpf:
+          type: string
+      xml:
+        name: User
+    Value:
+      type: object
+      properties:
+        value:
+          type: number
+          format: double
+      xml:
+        name: Balance
+    Transactions:
+      type: array
+      items:
+        $ref: '#/components/schemas/TransactionsItem'
+    TransactionsItem:
+      type: object
+      properties:
+        id:
+          type: integer
+        amount:
+          type: number
+        transactionType: 
+          type: string
+        brlAmount:
+          type: number
+        transactionDateTime:
+          type: string
+
+       
+    
+    
