@@ -1,6 +1,7 @@
 package com.papp.skyline.controller;
 
 import com.papp.skyline.dto.TransactionDTO;
+import com.papp.skyline.dto.ValueDTO;
 import com.papp.skyline.service.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,7 +22,7 @@ public class TransferBalanceController {
     private WalletService walletService;
 
     @PostMapping("/transfer")
-    public ResponseEntity<BigDecimal> transferBalance(@RequestBody TransactionDTO transaction) {
+    public ResponseEntity<ValueDTO> transferBalance(@RequestBody TransactionDTO transaction) {
 
         if(Objects.isNull(transaction.getCpf()) || Objects.isNull(transaction.getAmount())) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -32,7 +33,7 @@ public class TransferBalanceController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-        return new ResponseEntity<>(currentBlrBalance, HttpStatus.OK);
+        return new ResponseEntity<>(walletService.toValueDTO(currentBlrBalance), HttpStatus.OK);
 
     }
 }

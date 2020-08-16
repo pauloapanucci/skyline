@@ -1,6 +1,5 @@
 package com.papp.skyline.controller;
 
-import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -11,8 +10,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultMatcher;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -69,7 +68,11 @@ abstract class SkylineTestController {
         return testPost(API_USERS, USER_JSON, status().isCreated());
     }
 
-    protected String getTransacttionJsonWithAmount(String amount) {
+    protected String getTransactionJsonWithAmount(String amount) {
         return "{\"cpf\": \"01234567890\", \"amount\":\"" + amount + "\" }";
+    }
+
+    protected String getValueJsonWithAmount(String amount) {
+        return "{\"value\":" + amount + "}";
     }
 }
