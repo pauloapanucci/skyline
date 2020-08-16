@@ -11,7 +11,7 @@ import java.util.Date;
 public class Transaction {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private BigDecimal amount;
     @Enumerated
