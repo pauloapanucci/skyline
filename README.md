@@ -14,7 +14,7 @@ Skyline é uma API que permite a criação de usuários em uma casa de câmbio de Bit
 
 # Documentação da API (OpenAPI)
 
-A documentação da API no formato OpenAPI está na pasta [doc](https://github.com/pauloapanucci/skyline/doc/swagger.yaml). Caso necessário, utilize o  [swagger editor](https://editor.swagger.io/).
+A documentação da API no formato OpenAPI está na pasta [doc](https://github.com/pauloapanucci/skyline/blob/develop/doc/swagger.yaml). Caso necessário, utilize o  [swagger editor](https://editor.swagger.io/).
 
 ### Tecnologia
 
@@ -50,7 +50,7 @@ http://localhost:8090/skyline/api
 
 ### Testando a API
 
-A pasta [doc](Skyline.postman_collection.json) contém uma collection do [Postman](https://www.postman.com/downloads/) para testar os endpoints desta API.
+A pasta [doc](https://github.com/pauloapanucci/skyline/blob/develop/doc/Skyline.postman_collection.json) contém uma collection do [Postman](https://www.postman.com/downloads/) para testar os endpoints desta API.
 
 #### Executando a API do código fonte
 Execute o comando
