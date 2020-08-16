@@ -6,9 +6,6 @@ import org.junit.Test;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MvcResult;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -21,30 +18,30 @@ public class TransferBalanceControllerTest extends SkylineTestController{
 
     @Test
     public void shouldSuccessfullyTransferBrlAndReturnBtcBalance() throws Exception {
-        MvcResult result = testPost(API_TRANSFER_BALANCE, getTransacttionJsonWithAmount("1000"), status().isOk());
-        BigDecimal btcBalanceReturned = new BigDecimal(result.getResponse().getContentAsString());
-        Assert.assertEquals(new BigDecimal("1000.00"), btcBalanceReturned);
+        MvcResult result = testPost(API_TRANSFER_BALANCE, getTransactionJsonWithAmount("1000"), status().isOk());
+        String btcBalanceReturned = result.getResponse().getContentAsString();
+        Assert.assertEquals(getValueJsonWithAmount("1000.00"), btcBalanceReturned);
     }
 
     @Test
     public void shouldSuccessfullyTransferBrlAndReturnBrlBalanceAccumulated() throws Exception {
-        MvcResult result = testPost(API_TRANSFER_BALANCE, getTransacttionJsonWithAmount("1000"), status().isOk());
-        BigDecimal brlBalanceReturned = new BigDecimal(result.getResponse().getContentAsString());
-        Assert.assertEquals(new BigDecimal("1000.00"), brlBalanceReturned);
+        MvcResult result = testPost(API_TRANSFER_BALANCE, getTransactionJsonWithAmount("1000"), status().isOk());
+        String brlBalanceReturned = result.getResponse().getContentAsString();
+        Assert.assertEquals(getValueJsonWithAmount("1000.00"), brlBalanceReturned);
 
-        result = testPost(API_TRANSFER_BALANCE, getTransacttionJsonWithAmount("1000"), status().isOk());
-        brlBalanceReturned = new BigDecimal(result.getResponse().getContentAsString());
-        Assert.assertEquals(new BigDecimal("2000.00"), brlBalanceReturned);
+        result = testPost(API_TRANSFER_BALANCE, getTransactionJsonWithAmount("1000"), status().isOk());
+        brlBalanceReturned = result.getResponse().getContentAsString();
+        Assert.assertEquals(getValueJsonWithAmount("2000.00"), brlBalanceReturned);
     }
 
     @Test
     public void shouldNotSuccessfullyBTransferBrlDueToNegativeAmount() throws Exception {
-        testPost(API_TRANSFER_BALANCE, getTransacttionJsonWithAmount("-1"), status().isInternalServerError());
+        testPost(API_TRANSFER_BALANCE, getTransactionJsonWithAmount("-1"), status().isInternalServerError());
     }
 
     @Test
     public void shouldNotSuccessfullyTransferBrlDueZeroTransactionAmount() throws Exception {
-        testPost(API_TRANSFER_BALANCE, getTransacttionJsonWithAmount("0"), status().isInternalServerError());
+        testPost(API_TRANSFER_BALANCE, getTransactionJsonWithAmount("0"), status().isInternalServerError());
     }
 
     @Test
