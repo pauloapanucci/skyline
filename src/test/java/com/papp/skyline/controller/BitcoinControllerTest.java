@@ -1,8 +1,5 @@
 package com.papp.skyline.controller;
 
-import com.papp.skyline.repository.UserRepository;
-import com.papp.skyline.repository.WalletRepository;
-import com.papp.skyline.service.WalletService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,14 +24,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 public class BitcoinControllerTest extends SkylineTestController {
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private WalletService walletService;
-
-    @Autowired
-    private WalletRepository walletRepository;
 
     @Autowired
     private RestTemplate restTemplate;
@@ -57,35 +46,35 @@ public class BitcoinControllerTest extends SkylineTestController {
 
     @Test
     public void shouldSuccessfullyBuyBtcAndReturnBtcBalance() throws Exception {
-        MvcResult result = testPost(API_BTC, getTransacttionJsonWithAmount("0.1"), status().isOk());
-        BigDecimal btcBalanceReturned = new BigDecimal(result.getResponse().getContentAsString());
-        Assert.assertEquals(new BigDecimal("0.10"), btcBalanceReturned);
+        MvcResult result = testPost(API_BTC, getTransactionJsonWithAmount("0.1"), status().isOk());
+        String btcBalanceReturned = result.getResponse().getContentAsString();
+        Assert.assertEquals(getValueJsonWithAmount("0.10"), btcBalanceReturned);
     }
 
     @Test
     public void shouldSuccessfullyBuyBtcAndReturnBtcBalanceAccumulated() throws Exception {
-        MvcResult result = testPost(API_BTC, getTransacttionJsonWithAmount("0.1"), status().isOk());
-        BigDecimal btcBalanceReturned = new BigDecimal(result.getResponse().getContentAsString());
-        Assert.assertEquals(new BigDecimal("0.10"), btcBalanceReturned);
+        MvcResult result = testPost(API_BTC, getTransactionJsonWithAmount("0.1"), status().isOk());
+        String btcBalanceReturned = result.getResponse().getContentAsString();
+        Assert.assertEquals(getValueJsonWithAmount("0.10"), btcBalanceReturned);
 
-        result = testPost(API_BTC, getTransacttionJsonWithAmount("0.1"), status().isOk());
-        btcBalanceReturned = new BigDecimal(result.getResponse().getContentAsString());
-        Assert.assertEquals(new BigDecimal("0.20"), btcBalanceReturned);
+        result = testPost(API_BTC, getTransactionJsonWithAmount("0.1"), status().isOk());
+        btcBalanceReturned = result.getResponse().getContentAsString();
+        Assert.assertEquals(getValueJsonWithAmount("0.20"), btcBalanceReturned);
     }
 
     @Test
     public void shouldNotSuccessfullyBuyBtcDueToLackOfBrlBalance() throws Exception {
-        testPost(API_BTC, getTransacttionJsonWithAmount("2"), status().isInternalServerError());
+        testPost(API_BTC, getTransactionJsonWithAmount("2"), status().isInternalServerError());
     }
 
     @Test
     public void shouldNotSuccessfullyBuyBtcDueZeroTransactionAmount() throws Exception {
-        testPost(API_BTC, getTransacttionJsonWithAmount("0"), status().isInternalServerError());
+        testPost(API_BTC, getTransactionJsonWithAmount("0"), status().isInternalServerError());
     }
 
     @Test
     public void shouldNotSuccessfullyBuyBtcDueNegativeTransactionAmount() throws Exception {
-        testPost(API_BTC, getTransacttionJsonWithAmount("-1"), status().isInternalServerError());
+        testPost(API_BTC, getTransactionJsonWithAmount("-1"), status().isInternalServerError());
     }
 
     @Test

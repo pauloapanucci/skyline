@@ -2,6 +2,7 @@ package com.papp.skyline.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.papp.skyline.bitcoinApis.BtcPrice;
+import com.papp.skyline.dto.ValueDTO;
 import com.papp.skyline.model.Transaction;
 import com.papp.skyline.model.TransactionType;
 import com.papp.skyline.model.User;
@@ -134,10 +135,16 @@ public class WalletService {
     }
 
     public List<Transaction> getLast5Transactions(String cpf, int quantity) {
-        return userRepository.findByCpf(cpf).getTransactions()
+        List<Transaction> transactions =
+            userRepository.findByCpf(cpf).getTransactions()
                 .stream()
                 .sorted(Comparator.comparingLong(Transaction::getId).reversed())
-                .collect(Collectors.toList())
-                .subList(0, quantity);
+                .collect(Collectors.toList());
+
+        return transactions.size() <= quantity ? transactions : transactions.subList(0, quantity);
+    }
+
+    public ValueDTO toValueDTO(BigDecimal value) {
+        return new ValueDTO(value);
     }
 }

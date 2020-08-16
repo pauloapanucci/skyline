@@ -1,6 +1,7 @@
 package com.papp.skyline.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.papp.skyline.dto.ValueDTO;
 import com.papp.skyline.model.Transaction;
 import com.papp.skyline.service.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Controller
-@RequestMapping("api/wallets")
+@RequestMapping("wallets")
 public class WalletController {
 
     @Autowired
@@ -26,40 +27,45 @@ public class WalletController {
     private ObjectMapper objectMapper;
 
     @GetMapping("/currentbrlbalance")
-    public ResponseEntity<BigDecimal> getCurrentBrlValue(@RequestParam String cpf) {
+    public ResponseEntity<ValueDTO> getCurrentBrlValue(@RequestParam String cpf) {
         if(Objects.isNull(cpf) || cpf.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return ResponseEntity.ok(walletService.getCurrentBrlBalanceValue(cpf));
+        BigDecimal value = walletService.getCurrentBrlBalanceValue(cpf);
+        return ResponseEntity.ok(walletService.toValueDTO(value));
     }
 
     @GetMapping("/currentbtcbalance")
-    public ResponseEntity<BigDecimal> getCurrentBtcValue(@RequestParam String cpf) {
+    public ResponseEntity<ValueDTO> getCurrentBtcValue(@RequestParam String cpf) {
         if(Objects.isNull(cpf) || cpf.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return ResponseEntity.ok(walletService.getCurrentBtcBalanceValue(cpf));
+        BigDecimal value = walletService.getCurrentBtcBalanceValue(cpf);
+        return ResponseEntity.ok(walletService.toValueDTO(value));
     }
 
     @GetMapping("/totalbrlamountinvestedinbtc")
-    public ResponseEntity<BigDecimal> getAmountOfBrlInvestedInBtc(@RequestParam String cpf) {
+    public ResponseEntity<ValueDTO> getAmountOfBrlInvestedInBtc(@RequestParam String cpf) {
         if(Objects.isNull(cpf) || cpf.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return ResponseEntity.ok(walletService.getAmountOfBrlInvestedInBtc(cpf));
+        BigDecimal value = walletService.getAmountOfBrlInvestedInBtc(cpf);
+        return ResponseEntity.ok(walletService.toValueDTO(value));
     }
 
     @GetMapping("/profitsincefirstbtctransaction")
-    public ResponseEntity<BigDecimal> getBtcProfitSoFar(@RequestParam String cpf) {
+    public ResponseEntity<ValueDTO> getBtcProfitSoFar(@RequestParam String cpf) {
         if(Objects.isNull(cpf) || cpf.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return ResponseEntity.ok(walletService.getBtcProfitSoFar(cpf));
+        BigDecimal value = walletService.getBtcProfitSoFar(cpf);
+        return ResponseEntity.ok(walletService.toValueDTO(value));
     }
 
     @GetMapping("/currentbtcvalue")
-    public ResponseEntity<BigDecimal> getBtcPriceInBrl() {
-        return ResponseEntity.ok(walletService.getBtcPriceInBrl());
+    public ResponseEntity<ValueDTO> getBtcPriceInBrl() {
+        BigDecimal value = walletService.getBtcPriceInBrl();
+        return ResponseEntity.ok(walletService.toValueDTO(value));
     }
 
     @GetMapping("/last5transactions")

@@ -56,38 +56,38 @@ public class WalletControllerTest extends SkylineTestController {
     @Test
     public void shouldGetCurrentBrlBalance() throws Exception {
         MvcResult mvcResult = testGet(API_WALLET + CURRENT_BRL_BALANCE, CPF, status().isOk());
-        BigDecimal brlBalanceResult = new BigDecimal(mvcResult.getResponse().getContentAsString());
-        Assert.assertEquals(new BigDecimal("2000.00"), brlBalanceResult);
+        String brlBalanceResult = mvcResult.getResponse().getContentAsString();
+        Assert.assertEquals(getValueJsonWithAmount("2000.00"), brlBalanceResult);
     }
 
     @Test
     public void shouldGetCurrentBtcBalance() throws Exception {
         MvcResult mvcResult = testGet(API_WALLET + CURRENT_BTC_BALANCE, CPF, status().isOk());
-        BigDecimal brlBalanceResult = new BigDecimal(mvcResult.getResponse().getContentAsString());
-        Assert.assertEquals(new BigDecimal("2.00"), brlBalanceResult);
+        String brlBalanceResult = mvcResult.getResponse().getContentAsString();
+        Assert.assertEquals(getValueJsonWithAmount("2.00"), brlBalanceResult);
     }
 
     @Test
     public void shouldGetTotalBrlAmountInvestedInBtc() throws Exception {
         MvcResult mvcResult = testGet(API_WALLET + TOTAL_AMOUNT_INVESTED_IN_BTC, CPF, status().isOk());
-        BigDecimal brlAmountInvestedInBtcResult = new BigDecimal(mvcResult.getResponse().getContentAsString());
-        Assert.assertEquals(new BigDecimal("2000.00"), brlAmountInvestedInBtcResult);
+        String brlAmountInvestedInBtcResult = mvcResult.getResponse().getContentAsString();
+        Assert.assertEquals(getValueJsonWithAmount("2000.00"), brlAmountInvestedInBtcResult);
     }
 
     @Test
     public void shouldGetProfitSinceFirstBtcTransaction() throws Exception {
         mockServercConfig(BTC_PRICE_API_BTC_URL_BRL_RESPONSE_PROFIT);
         MvcResult mvcResult = testGet(API_WALLET + PROFIT_SINCE_FIRST_BTC_TRANSACTION, CPF, status().isOk());
-        BigDecimal profitResult = new BigDecimal(mvcResult.getResponse().getContentAsString());
-        Assert.assertEquals(new BigDecimal("1000.00"), profitResult);
+        String profitResult = mvcResult.getResponse().getContentAsString();
+        Assert.assertEquals(getValueJsonWithAmount("1000.00"), profitResult);
     }
 
     @Test
     public void shouldGetLossSinceFirstBtcTransaction() throws Exception {
         mockServercConfig(BTC_PRICE_API_BTC_URL_BRL_RESPONSE_LOSS);
         MvcResult mvcResult = testGet(API_WALLET + PROFIT_SINCE_FIRST_BTC_TRANSACTION, CPF, status().isOk());
-        BigDecimal profitResult = new BigDecimal(mvcResult.getResponse().getContentAsString());
-        Assert.assertEquals(new BigDecimal("-1000.00"), profitResult);
+        String profitResult = mvcResult.getResponse().getContentAsString();
+        Assert.assertEquals(getValueJsonWithAmount("-1000.00"), profitResult);
     }
 
     @Test
@@ -120,13 +120,13 @@ public class WalletControllerTest extends SkylineTestController {
 
     private void createUserAndPerformTransactions() throws Exception {
         createUser();
-        testPost(API_TRANSFER_BALANCE, getTransacttionJsonWithAmount("1000"), status().isOk());
-        testPost(API_BTC, getTransacttionJsonWithAmount("0.5"), status().isOk());
-        testPost(API_BTC, getTransacttionJsonWithAmount("0.5"), status().isOk());
-        testPost(API_TRANSFER_BALANCE, getTransacttionJsonWithAmount("1000"), status().isOk());
-        testPost(API_BTC, getTransacttionJsonWithAmount("0.5"), status().isOk());
-        testPost(API_BTC, getTransacttionJsonWithAmount("0.5"), status().isOk());
-        testPost(API_TRANSFER_BALANCE, getTransacttionJsonWithAmount("2000"), status().isOk());
+        testPost(API_TRANSFER_BALANCE, getTransactionJsonWithAmount("1000"), status().isOk());
+        testPost(API_BTC, getTransactionJsonWithAmount("0.5"), status().isOk());
+        testPost(API_BTC, getTransactionJsonWithAmount("0.5"), status().isOk());
+        testPost(API_TRANSFER_BALANCE, getTransactionJsonWithAmount("1000"), status().isOk());
+        testPost(API_BTC, getTransactionJsonWithAmount("0.5"), status().isOk());
+        testPost(API_BTC, getTransactionJsonWithAmount("0.5"), status().isOk());
+        testPost(API_TRANSFER_BALANCE, getTransactionJsonWithAmount("2000"), status().isOk());
     }
 
     private void mockServercConfig(String response) throws URISyntaxException {

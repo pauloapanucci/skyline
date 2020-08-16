@@ -1,6 +1,7 @@
 package com.papp.skyline.controller;
 
 import com.papp.skyline.dto.TransactionDTO;
+import com.papp.skyline.dto.ValueDTO;
 import com.papp.skyline.service.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,14 +15,14 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 @Controller
-@RequestMapping("api/bitcoins")
+@RequestMapping("bitcoins")
 public class BitcoinController {
 
     @Autowired
     private WalletService walletService;
 
-    @PostMapping("buy")
-    public ResponseEntity<BigDecimal> buy(@RequestBody TransactionDTO transaction){
+    @PostMapping("/buy")
+    public ResponseEntity<ValueDTO> buy(@RequestBody TransactionDTO transaction){
 
         if(Objects.isNull(transaction.getCpf()) || Objects.isNull(transaction.getAmount())) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -32,6 +33,6 @@ public class BitcoinController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-        return new ResponseEntity<>(currentBtcBalance, HttpStatus.OK);
+        return new ResponseEntity<>(walletService.toValueDTO(currentBtcBalance), HttpStatus.OK);
     }
 }

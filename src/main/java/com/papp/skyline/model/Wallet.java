@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 @Table(name = "wallet")
 public class Wallet {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private BigDecimal brlBalance;
     private BigDecimal btcBalance;
