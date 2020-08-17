@@ -14,30 +14,30 @@ Skyline é uma API que permite a criação de usuários em uma casa de câmbio d
 - Consultar o preço atual do Bitcoin em R$;
 - Consultar informações gerais e de saúde da aplicação.
 
-### Skyline Downstream
+## Skyline Downstream
 
 Mesmo se tratando de um desafio para um processo seletivo, foram elencadas *features* a serem implementadas no quadro [Skyline Downstream](https://github.com/pauloapanucci/skyline/projects/1). Acompanhe o trabalho em andamento no quadro :)
 
-### Considerações sobre a implementação
+## Considerações sobre a implementação
 
 As considerações sobre a implementação estão num [README](https://github.com/pauloapanucci/skyline/blob/develop/doc/README.md) separado dentro do diretório doc, para que a página inicial do projeto não fique muito extensa.
 
-### Documentação da API (OpenAPI)
+## Documentação da API (OpenAPI)
 
 A documentação da API no formato OpenAPI está na pasta [doc](https://github.com/pauloapanucci/skyline/blob/develop/doc/swagger.yaml). Caso necessário, utilize o  [swagger editor](https://editor.swagger.io/).
 
-### Tecnologia
+## Tecnologia
 
 - Java 8 - devido ao suporte públido mantido pela Oracle;
 - Spring e Spring Boot - Devido a característica IoC (Inversion of Control) em que o controle dos objetos e da aplicação é transferido ao framework;
 - MySQL - banco de dados consolidado e open source
 - Docker - facilidade na disponibilidade do ambiente para desenvolvimento e produção
 
-### Pré-requisito
+## Pré-requisito
 
 - docker e docker-compose
 
-### Executando a API
+## Executando a API
 
 Instale o docker e/ou o docker-compose caso não tenha estes instalados (ver pré-requisitos).
 
@@ -50,7 +50,7 @@ para executar em background:
 $ docker-compose up  --build --detach
 ```
 
-### Informações de disponibilidade da API
+## Informações de disponibilidade da API
 
 A API estará disponível na seguinte url:
 
@@ -58,11 +58,11 @@ A API estará disponível na seguinte url:
 http://localhost:8090/skyline/api
 ```
 
-### Testando a API
+## Testando a API
 
 A pasta [doc](https://github.com/pauloapanucci/skyline/blob/develop/doc/Skyline.postman_collection.json) contém uma collection do [Postman](https://www.postman.com/downloads/) para testar os endpoints desta API.
 
-#### Executando a API do código fonte
+## Executando a API do código fonte
 Execute o comando
 ```sh
 $ mvn clean install -DskipTests
