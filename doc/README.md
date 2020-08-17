@@ -36,4 +36,4 @@ Ao baixar o pacote disponibilizado como [skyline-v1.0.0.zip](https://github.com/
 - Diretório skyline-config contendo o aquivo application.properties externalizado (nesse ceário podemos imaginar que o cliente possua mais arquivos de *properties* e outros *resources* já configurados e guardados);
     - Assim, facilitamos que o cliente não precisa reconfigurar a aplicação, pois suas configurações anteriores estão salvas, e caso a atualização contemple alguma mudança em um *resource* ou arquivo *properties* o usuário pode fazer em seus arquivos de acordo com o manual da aplicação.
 - Arquivo dockerfile e docker-compose, para que seja feita de forma automatizada a execução da aplicação já considerando os arquivos de configuração externalizadas do cliente;
-- Um TO-DO para próximas implementacões é utilizar o [Liquibase](https://docs.liquibase.com/home.html) para facilitar a atualização da base de dados do cliente fazendo isso através da aplicação.
+- Um TO-DO para próximas implementações é utilizar o [Liquibase](https://docs.liquibase.com/home.html) para facilitar a atualização da base de dados do cliente fazendo isso através da aplicação.
