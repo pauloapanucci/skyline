@@ -1,8 +1,8 @@
 package com.papp.skyline.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.papp.skyline.model.Transaction;
-import com.papp.skyline.model.TransactionType;
+import com.papp.skyline.entity.Transaction;
+import com.papp.skyline.entity.TransactionType;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

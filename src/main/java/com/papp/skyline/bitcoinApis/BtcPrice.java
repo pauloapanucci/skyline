@@ -26,7 +26,7 @@ public class BtcPrice {
     private String currency;
     private BigDecimal amount;
 
-    public BtcPrice(String base, String currency, BigDecimal amount) {
+    private BtcPrice(String base, String currency, BigDecimal amount) {
         this.base = base;
         this.currency = currency;
         this.amount = amount;

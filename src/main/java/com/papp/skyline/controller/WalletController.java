@@ -2,7 +2,7 @@ package com.papp.skyline.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.papp.skyline.dto.ValueDTO;
-import com.papp.skyline.model.Transaction;
+import com.papp.skyline.entity.Transaction;
 import com.papp.skyline.service.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
