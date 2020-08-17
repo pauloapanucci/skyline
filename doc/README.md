@@ -32,8 +32,8 @@ Com o aumento do uso da API, uma consideração que eu faria em relação a perf
 ## Considerações sobre permitir a fácil instalação para o cliente sem perder suas configurações
 
 Ao baixar o pacote disponibilizado como [skyline-v1.0.0.zip](https://github.com/pauloapanucci/skyline/releases/tag/v1.0.0) provemos:
-- A aplica��o skyline.jar;
-- Diret�rio skyline-config contendo o aquivo application.properties externalizado (nesse ce�rio podemos imaginar que o cliente possua mais arquivos de *properties* e outros *resources* j� configurados e guardados);
-    - Assim, facilitamos que o cliente n�o precisa reconfigurar a aplica��o, pois suas configura��es anteriores est�o salvas, e caso a atualiza��o contemple alguma mudan�a em um *resource* ou arquivo *properties* o usu�rio pode fazer em seus arquivos de acordo com o manual da aplica��o.
-- Arquivo dockerfile e docker-compose, para que seja feita de forma automatizada a execu��o da aplica��o j� considerando os arquivos de configura��o externalizadas do cliente;
-- Um TO-DO para pr�ximas implementa��es � utilizar o [Liquibase](https://docs.liquibase.com/home.html) para facilitar a atualiza��o da base de dados do cliente fazendo isso atrav�s da aplica��o.
+- A aplicação skyline.jar;
+- Diretório skyline-config contendo o aquivo application.properties externalizado (nesse ceário podemos imaginar que o cliente possua mais arquivos de *properties* e outros *resources* já configurados e guardados);
+    - Assim, facilitamos que o cliente não precisa reconfigurar a aplicação, pois suas configurações anteriores estão salvas, e caso a atualização contemple alguma mudança em um *resource* ou arquivo *properties* o usuário pode fazer em seus arquivos de acordo com o manual da aplicação.
+- Arquivo dockerfile e docker-compose, para que seja feita de forma automatizada a execução da aplicação já considerando os arquivos de configuração externalizadas do cliente;
+- Um TO-DO para próximas implementacões é utilizar o [Liquibase](https://docs.liquibase.com/home.html) para facilitar a atualização da base de dados do cliente fazendo isso através da aplicação.
