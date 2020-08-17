@@ -112,7 +112,9 @@ public class WalletService {
         try {
             return BtcPrice.inBrl().getAmount();
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            // it is not a good practice to print a stacktrace
+            // it is going to be logged a warn/error when integrate with logback
+            // e.printStackTrace();
         }
         return BigDecimal.ZERO;
     }

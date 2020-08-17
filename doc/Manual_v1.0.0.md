@@ -1,16 +1,16 @@
-# Manual de instalação/utilização da API Skyline versão 1.0.0
+# Manual de instalaÃ§Ã£o/utilizaÃ§Ã£o da API Skyline versÃ£o 1.0.0
 
-## Configurações
+## ConfiguraÃ§Ãµes
 
-Copie (substitua o já existente) seu arquivo application.properties configurado para dentro do diretório skyline-config (caso não tenha, manter o que já vem no pacote).
+Copie (substitua o jÃ¡ existente) seu arquivo application.properties configurado para dentro do diretÃ³rio skyline-config (caso nÃ£o tenha, manter o que jÃ¡ vem no pacote).
 
-## Subindo a aplicação
-para subir a aplicação:
+## Subindo a aplicaÃ§Ã£o
+para subir a aplicaÃ§Ã£o:
 ```sh
 $ docker-compose up --build
 ```
 
-para subir a aplicação em background:
+para subir a aplicaÃ§Ã£o em background:
 ```sh
 $ docker-compose up  --build --detach
 ```
