@@ -32,8 +32,8 @@ Com o aumento do uso da API, uma consideraÃ§Ã£o que eu faria em relaÃ§Ã£o a perf
 ## ConsideraÃ§Ãµes sobre permitir a fÃ¡cil instalaÃ§Ã£o para o cliente sem perder suas configuraÃ§Ãµes
 
 Ao baixar o pacote disponibilizado como [skyline-v1.0.0.zip](https://github.com/pauloapanucci/skyline/releases/tag/v1.0.0) provemos:
-- A aplicação skyline.jar;
-- Diretório skyline-config contendo o aquivo application.properties externalizado (nesse ceário podemos imaginar que o cliente possua mais arquivos de *properties* e outros *resources* já configurados e guardados);
-    - Assim, facilitamos que o cliente não precisa reconfigurar a aplicação, pois suas configurações anteriores estão salvas, e caso a atualização contemple alguma mudança em um *resource* ou arquivo *properties* o usuário pode fazer em seus arquivos de acordo com o manual da aplicação.
-- Arquivo dockerfile e docker-compose, para que seja feita de forma automatizada a execução da aplicação já considerando os arquivos de configuração externalizadas do cliente;
-- Um TO-DO para próximas implementações é utilizar o [Liquibase](https://docs.liquibase.com/home.html) para facilitar a atualização da base de dados do cliente fazendo isso através da aplicação.
+- A aplicaï¿½ï¿½o skyline.jar;
+- Diretï¿½rio skyline-config contendo o aquivo application.properties externalizado (nesse ceï¿½rio podemos imaginar que o cliente possua mais arquivos de *properties* e outros *resources* jï¿½ configurados e guardados);
+    - Assim, facilitamos que o cliente nï¿½o precisa reconfigurar a aplicaï¿½ï¿½o, pois suas configuraï¿½ï¿½es anteriores estï¿½o salvas, e caso a atualizaï¿½ï¿½o contemple alguma mudanï¿½a em um *resource* ou arquivo *properties* o usuï¿½rio pode fazer em seus arquivos de acordo com o manual da aplicaï¿½ï¿½o.
+- Arquivo dockerfile e docker-compose, para que seja feita de forma automatizada a execuï¿½ï¿½o da aplicaï¿½ï¿½o jï¿½ considerando os arquivos de configuraï¿½ï¿½o externalizadas do cliente;
+- Um TO-DO para prï¿½ximas implementaï¿½ï¿½es ï¿½ utilizar o [Liquibase](https://docs.liquibase.com/home.html) para facilitar a atualizaï¿½ï¿½o da base de dados do cliente fazendo isso atravï¿½s da aplicaï¿½ï¿½o.
