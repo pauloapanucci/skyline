@@ -1,4 +1,4 @@
-package com.papp.skyline.model;
+package com.papp.skyline.entity;
 
 public enum TransactionType {
     MONEY_TRANSFER,

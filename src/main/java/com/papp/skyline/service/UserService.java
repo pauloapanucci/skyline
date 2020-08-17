@@ -1,7 +1,7 @@
 package com.papp.skyline.service;
 
-import com.papp.skyline.model.User;
-import com.papp.skyline.model.Wallet;
+import com.papp.skyline.entity.User;
+import com.papp.skyline.entity.Wallet;
 import com.papp.skyline.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
