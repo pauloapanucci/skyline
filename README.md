@@ -22,7 +22,7 @@ Mesmo se tratando de um desafio para um processo seletivo, foram elencadas *feat
 
 As considerações sobre a implementação estão num [README](https://github.com/pauloapanucci/skyline/blob/develop/doc/README.md) separado dentro do diretório doc, para que a página inicial do projeto não fique muito extensa.
 
-# Documentação da API (OpenAPI)
+### Documentação da API (OpenAPI)
 
 A documentação da API no formato OpenAPI está na pasta [doc](https://github.com/pauloapanucci/skyline/blob/develop/doc/swagger.yaml). Caso necessário, utilize o  [swagger editor](https://editor.swagger.io/).
 
