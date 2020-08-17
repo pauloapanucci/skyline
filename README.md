@@ -12,6 +12,10 @@ Skyline é uma API que permite a criação de usuários em uma casa de câmbio de Bit
 - Consultar o preço atual do Bitcoin em R$;
 - Consultar informações gerais e de saúde da aplicação.
 
+# Skyline Downstream
+
+Mesmo se tratando de um desafio para um processo seletivo, foram elencadas *features* a serem implementadas no quadro [Skyline Downstream](https://github.com/pauloapanucci/skyline/projects/1). Acompanhe o trabalho em andamento no quadro :)
+
 # Considerações sobre a implementação
 
 As considerações sobre a implementação estão num [README](https://github.com/pauloapanucci/skyline/blob/develop/doc/README.md) separado dentro do diretório doc, para que a página inicial do projeto não fique muito extensa.

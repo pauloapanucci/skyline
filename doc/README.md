@@ -28,3 +28,12 @@ A Aplicação foi dividida nas seguintes camadas:
 
 ## Considerações sobre a performance no backend
 Com o aumento do uso da API, uma consideração que eu faria em relação a performance seria tornar a operação de compra de Bitcoin *multithread* ou separaria em outro serviço para que mais de uma instância processasse os pedidos de compra de Bitcoins. Esta consideração é feita pois esse processo consome os dados de uma api de terceiro o que pode se tornar uma comunicação mais lenta em momentos específicos. 
+
+## Considerações sobre permitir a fácil instalação para o cliente sem perder suas configurações
+
+Ao baixar o pacote disponibilizado como [Release v1.0.0](https://github.com/pauloapanucci/skyline/blob/develop/src/main/java/com/papp/skyline/dto/UserDTO.java) provemos:
+- A aplicação skyline.jar;
+- Diretório skyline-config contendo o aquivo application.properties externalizado (nesse ceário podemos imaginar que o cliente possua mais arquivos de *properties* e outros *resources* já configurados e guardados);
+    - Assim, facilitamos que o cliente não precisa reconfigurar a aplicação, pois suas configurações anteriores estão salvas, e caso a atualização contemple alguma mudança em um *resource* ou arquivo *properties* o usuário pode fazer em seus arquivos de acordo com o manual da aplicação.
+- Arquivo dockerfile e docker-compose, para que seja feita de forma automatizada a execução da aplicação já considerando os arquivos de configuração externalizadas do cliente;
+- Um TO-DO para próximas implementações é utilizar o [Liquibase](https://docs.liquibase.com/home.html) para facilitar a atualização da base de dados do cliente fazendo isso através da aplicação.
