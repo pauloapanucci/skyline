@@ -13,7 +13,6 @@ import org.springframework.test.web.client.MockRestServiceServer;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.web.client.RestTemplate;
 
-import java.math.BigDecimal;
 import java.net.URI;
 
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
@@ -23,7 +22,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
-public class BitcoinControllerTest extends SkylineTestController {
+public class BitcoinControllerTest extends SkylineControllerTest {
 
     @Autowired
     private RestTemplate restTemplate;
