@@ -5,9 +5,17 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ develop, release/*, feature/*, hotfix/* ]
+    branches: 
+      - develop
+      - 'release/**'
+      - 'feature/**'
+      - 'hotfix/**'
   pull_request:
-    branches: [ develop, release/*, feature/*, hotfix/* ]
+    branches:
+      - develop
+      - 'release/**'
+      - 'feature/**'
+      - 'hotfix/**'
 
 jobs:
   build:
