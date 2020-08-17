@@ -31,7 +31,7 @@ Com o aumento do uso da API, uma consideração que eu faria em relação a performa
 
 ## Considerações sobre permitir a fácil instalação para o cliente sem perder suas configurações
 
-Ao baixar o pacote disponibilizado como [Release v1.0.0](https://github.com/pauloapanucci/skyline/blob/develop/src/main/java/com/papp/skyline/dto/UserDTO.java) provemos:
+Ao baixar o pacote disponibilizado como [skyline-v1.0.0.zip](https://github.com/pauloapanucci/skyline/releases/tag/v1.0.0) provemos:
 - A aplicação skyline.jar;
 - Diretório skyline-config contendo o aquivo application.properties externalizado (nesse ceário podemos imaginar que o cliente possua mais arquivos de *properties* e outros *resources* já configurados e guardados);
     - Assim, facilitamos que o cliente não precisa reconfigurar a aplicação, pois suas configurações anteriores estão salvas, e caso a atualização contemple alguma mudança em um *resource* ou arquivo *properties* o usuário pode fazer em seus arquivos de acordo com o manual da aplicação.
