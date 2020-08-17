@@ -10,7 +10,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
-public class TransferBalanceControllerTest extends SkylineTestController{
+public class TransferBalanceControllerTest extends SkylineControllerTest {
     @Before
     public void init() throws Exception {
         createUser();

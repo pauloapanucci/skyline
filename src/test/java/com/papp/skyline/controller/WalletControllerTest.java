@@ -28,7 +28,7 @@ import static org.springframework.test.web.client.response.MockRestResponseCreat
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_CLASS)
-public class WalletControllerTest extends SkylineTestController {
+public class WalletControllerTest extends SkylineControllerTest {
     @Autowired
     private RestTemplate restTemplate;
     private MockRestServiceServer mockServer;
