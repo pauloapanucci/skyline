@@ -1,4 +1,4 @@
-package com.papp.skyline.model;
+package com.papp.skyline.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 

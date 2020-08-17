@@ -12,6 +12,10 @@ Skyline é uma API que permite a criação de usuários em uma casa de câmbio de Bit
 - Consultar o preço atual do Bitcoin em R$;
 - Consultar informações gerais e de saúde da aplicação.
 
+# Considerações sobre a implementação
+
+As considerações sobre a implementação estão num [README](https://github.com/pauloapanucci/skyline/blob/develop/doc/README.md) separado dentro do diretório doc, para que a página inicial do projeto não fique muito extensa.
+
 # Documentação da API (OpenAPI)
 
 A documentação da API no formato OpenAPI está na pasta [doc](https://github.com/pauloapanucci/skyline/blob/develop/doc/swagger.yaml). Caso necessário, utilize o  [swagger editor](https://editor.swagger.io/).

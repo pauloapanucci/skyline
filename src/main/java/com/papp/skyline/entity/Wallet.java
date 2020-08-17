@@ -1,4 +1,4 @@
-package com.papp.skyline.model;
+package com.papp.skyline.entity;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
