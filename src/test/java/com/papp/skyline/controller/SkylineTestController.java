@@ -21,12 +21,12 @@ abstract class SkylineTestController {
     @Autowired
     MockMvc mockMvc;
 
-    protected static String API_USERS = "/api/users";
+    protected static String API_USERS = "/users";
     protected static String USER_JSON = "{\"name\":\"Paulo\",\"cpf\":\"01234567890\"}";
     protected static String USER_JSON_WITHOUT_NAME = "{\"cpf\":\"01234567890\"}";
     protected static String USER_JSON_WITHOUT_CPF = "{\"name\": \"Paulo\"}";
 
-    protected static String API_BTC = "/api/bitcoins/buy";
+    protected static String API_BTC = "/bitcoins/buy";
     protected static String BTC_PRICE_API_BTC_URL_BRL = "https://api.coinbase.com/v2/prices/spot?currency=BRL";
     protected static String BTC_PRICE_API_BTC_URL_BRL_RESPONSE = "{\"data\":{\"base\":\"BTC\",\"currency\":\"BRL\",\"amount\":\"1000\"}}";
     protected static String BTC_PRICE_API_BTC_URL_BRL_RESPONSE_PROFIT = "{\"data\":{\"base\":\"BTC\",\"currency\":\"BRL\",\"amount\":\"1500\"}}";
@@ -34,12 +34,12 @@ abstract class SkylineTestController {
     protected static String BTC_TRANSACTTION_JSON_WITHOUT_CPF = "{\"amount\":\"0.1\"}";
     protected static String TRANSACTTION_JSON_WITHOUT_AMOUNT = "{\"cpf\": \"01234567890\"}";
 
-    protected static String API_TRANSFER_BALANCE = "/api/balances/transfer";
+    protected static String API_TRANSFER_BALANCE = "/balances/transfer";
     protected static String BRL_TRANSACTION = "{\"cpf\":\"01234567890\", \"amount\":\"1000\"}";
     protected static String BRL_TRANSACTION_WITHOUT_CPF = "{\"amount\":\"1000\"}";
     protected static String BRL_TRANSACTION_WITHOUT_AMOUNT = "{\"cpf\":\"01234567890\"}";
 
-    protected static String API_WALLET = "/api/wallets";
+    protected static String API_WALLET = "/wallets";
     protected static String CURRENT_BRL_BALANCE = "/currentbrlbalance";
     protected static String CURRENT_BTC_BALANCE = "/currentbtcbalance";
     protected static String TOTAL_AMOUNT_INVESTED_IN_BTC = "/totalbrlamountinvestedinbtc";
