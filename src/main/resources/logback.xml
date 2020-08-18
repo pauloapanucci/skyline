@@ -9,7 +9,7 @@
                     <property name="SKYLINE_LOG_FOLDER" value="${skyline.logFolder}" />
                 </then>
                 <else>
-                    <property name="SKYLINE_LOG_FILE_NAME" value="${java.io.tmpdir}/logs" />
+                    <property name="SKYLINE_LOG_FOLDER" value="${java.io.tmpdir}/logs" />
                 </else>
             </if>
         </then>
