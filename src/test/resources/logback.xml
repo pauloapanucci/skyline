@@ -1,0 +1,24 @@
+<configuration scan="true" scanPeriod="30 seconds" packagingData="true">
+
+    <appender name="textFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${basedir}/target/skyline_tests.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${SKYLINE_LOG_FOLDER}/${SKYLINE_LOG_FILE_NAME}.%d{yyyy-MM-dd_HH}hs.%i.log.zip</fileNamePattern>
+            <maxHistory>240</maxHistory>
+            <maxFileSize>10MB</maxFileSize>
+        </rollingPolicy>
+        <encoder>
+            <pattern>[%d{dd/MM/yyyy HH:mm:ss.SSS X}] [%thread] %-5level %logger{70} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+    <root level="info">
+        <appender-ref ref="textFile" />
+
+<!--         para geração de .json -->
+<!--         <appender-ref ref="jsonFile" />-->
+    </root>
+
+</configuration>
