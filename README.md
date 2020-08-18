@@ -71,5 +71,5 @@ para gerar um artefato chamado skyline.jar na pasta target.
 
 Para executar o jar:
 ```sh
-$ java -Dskyline.logFolder=/path/to/log/folder -jar skyline.jar
+$ java -jar skyline.jar
 ```
