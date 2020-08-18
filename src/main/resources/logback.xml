@@ -6,17 +6,17 @@
         <then>
             <if condition='isDefined("skyline.logFolder")'>
                 <then>
-                    <property name="LOG_FOLDER" value="${skyline.logFolder}" />
+                    <property name="SKYLINE_LOG_FOLDER" value="${skyline.logFolder}" />
                 </then>
                 <else>
-                    <property name="LOG_FOLDER" value="${java.io.tmpdir}/logs" />
+                    <property name="SKYLINE_LOG_FILE_NAME" value="${java.io.tmpdir}/logs" />
                 </else>
             </if>
         </then>
     </if>
 
     <appender name="textFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOG_FOLDER}/${LOG_FILE_NAME}</file>
+        <file>${SKYLINE_LOG_FOLDER}/${SKYLINE_LOG_FILE_NAME}</file>
         <append>true</append>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <fileNamePattern>${SKYLINE_LOG_FOLDER}/${SKYLINE_LOG_FILE_NAME}.%d{yyyy-MM-dd_HH}hs.%i.log.zip</fileNamePattern>
