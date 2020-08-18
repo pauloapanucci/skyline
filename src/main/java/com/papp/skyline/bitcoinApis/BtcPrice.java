@@ -3,6 +3,8 @@ package com.papp.skyline.bitcoinApis;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -12,6 +14,8 @@ import java.math.BigDecimal;
 
 @Component
 public class BtcPrice {
+
+    private final static Logger LOG = LoggerFactory.getLogger(BtcPrice.class);
 
     private static RestTemplate restTemplate;
 
@@ -59,6 +63,7 @@ public class BtcPrice {
     }
 
     public static BtcPrice inBrl() throws JsonProcessingException {
+        LOG.debug("API url user to get BtcPrice inBrl: " + BTC_PRICE_API_URL + "BRL");
         JsonNode jsonNode = getContentInJson(BTC_PRICE_API_URL + "BRL", restTemplate);
         return jsonToBtcPrice(jsonNode);
     }

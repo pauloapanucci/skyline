@@ -10,17 +10,20 @@ import com.papp.skyline.entity.Wallet;
 import com.papp.skyline.repository.TransactionRepository;
 import com.papp.skyline.repository.UserRepository;
 import com.papp.skyline.repository.WalletRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
 public class WalletService {
+
+    private final static Logger LOG = LoggerFactory.getLogger(WalletService.class);
 
     @Autowired
     private WalletRepository walletRepository;
@@ -49,6 +52,7 @@ public class WalletService {
 
     public BigDecimal transferBalance(String cpf, BigDecimal amount) {
         if(amount.compareTo(BigDecimal.ZERO) <= 0) {
+            LOG.warn("Real amount to transfer must be > 0 (amount informed is " + amount +")");
             return null;
         }
         User user = userRepository.findByCpf(cpf);
@@ -62,21 +66,16 @@ public class WalletService {
 
     public BigDecimal buyBtcInBrl(String cpf, BigDecimal amount) {
         if(amount.compareTo(BigDecimal.ZERO) <= 0) {
+            LOG.warn("Bitcoin amount to buy must be > 0 (amount informed is " + amount +")");
             return null;
         }
-        BtcPrice btcPrice;
-        try {
-            btcPrice = BtcPrice.inBrl();
-        } catch (JsonProcessingException e) {
-            return null;
-        }
-        if(Objects.isNull(btcPrice)){
-            return null;
-        }
-        BigDecimal priceOfTransactionInBrl = btcPrice.getAmount().multiply(amount);
+        BigDecimal btcPrice = getBtcPriceInBrl();;
+
+        BigDecimal priceOfTransactionInBrl = btcPrice.multiply(amount);
         User user = userRepository.findByCpf(cpf);
         Wallet wallet = user.getWallet();
         if (!haveEnoughBalanceToBuy(wallet, priceOfTransactionInBrl)) {
+            LOG.warn("User " + "[id " + user.getId() + "]" + "does not have enough balance to buy Bitcoin");
             return null;
         }
         addBtcBalance(wallet, amount);
@@ -100,7 +99,7 @@ public class WalletService {
                 .stream()
                 .filter(transaction ->
                         TransactionType.BITCOIN_ACQUISITION.equals(transaction.getTransactionType()))
-                .map(transaction -> transaction.getBrlAmount())
+                .map(Transaction::getBrlAmount)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
@@ -112,27 +111,25 @@ public class WalletService {
         try {
             return BtcPrice.inBrl().getAmount();
         } catch (JsonProcessingException e) {
-            // it is not a good practice to print a stacktrace
-            // it is going to be logged a warn/error when integrate with logback
-            // e.printStackTrace();
+            LOG.warn("Unable to get BtcPrice in BRL", e);
         }
         return BigDecimal.ZERO;
     }
 
-    private BigDecimal calcProfit(BigDecimal amountOfBrlInvestedInBtc, BigDecimal curretnBtcPriceInBrl, BigDecimal amountOfBtc) {
+    private BigDecimal calcProfit(BigDecimal amountOfBrlInvestedInBtc, BigDecimal currentBtcPriceInBrl, BigDecimal amountOfBtc) {
         if(amountOfBrlInvestedInBtc.equals(BigDecimal.ZERO)) {
             return BigDecimal.ZERO;
         }
-        BigDecimal currentPrice = amountOfBtc.multiply(curretnBtcPriceInBrl);
+        BigDecimal currentPrice = amountOfBtc.multiply(currentBtcPriceInBrl);
         return currentPrice.subtract(amountOfBrlInvestedInBtc);
     }
 
     public BigDecimal getBtcProfitSoFar(String cpf) {
         User user = userRepository.findByCpf(cpf);
         BigDecimal amountOfBrlInvestedInBtc = getAmountOfBrlInvestedInBtc(user);
-        BigDecimal curretnBtcPriceInBrl = getBtcPriceInBrl();
+        BigDecimal currentBtcPriceInBrl = getBtcPriceInBrl();
         BigDecimal amountOfBtc = user.getWallet().getBtcBalance();
-        return calcProfit(amountOfBrlInvestedInBtc, curretnBtcPriceInBrl, amountOfBtc);
+        return calcProfit(amountOfBrlInvestedInBtc, currentBtcPriceInBrl, amountOfBtc);
     }
 
     public List<Transaction> getLast5Transactions(String cpf, int quantity) {
