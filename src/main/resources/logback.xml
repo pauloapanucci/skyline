@@ -44,7 +44,7 @@
 
     <logger name="org.springframework.boot.autoconfigure.logging.AutoConfigurationReportLoggingInitializer" level="info"/>
 
-    <root level="debug">
+    <root level="info">
         <appender-ref ref="textFile" />
 
 <!--         para geração de .json -->
