@@ -27,4 +27,4 @@ COPY --from=build ${DEPENDENCY}/META-INF /app/META-INF
 COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /app
 
 # running skyline app
-ENTRYPOINT ["java", "-cp", "app:app/lib/*","com.papp.skyline.SkylineApplication"]
+ENTRYPOINT ["java", "-Dskyline.logFolder=logs", "-cp", "app:app/lib/*", "com.papp.skyline.SkylineApplication"]
