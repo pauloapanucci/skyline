@@ -28,6 +28,12 @@
         </encoder>
     </appender>
 
+<!--    <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">-->
+<!--        <encoder>-->
+<!--            <pattern>[%d{dd/MM/yyyy HH:mm:ss.SSS X}] [%thread] %-5level %logger{70} - %msg%n</pattern>-->
+<!--        </encoder>-->
+<!--    </appender>-->
+
     <!-- para geração de .json -->
 <!--    <appender name="jsonFile" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
 <!--        <file>${SKYLINE_LOG_FOLDER}/${SKYLINE_LOG_FILE_NAME}.json</file>-->
@@ -46,6 +52,9 @@
 
     <root level="info">
         <appender-ref ref="textFile" />
+
+<!--        para geração de log no console-->
+<!--        <appender-ref ref="consoleAppender" />-->
 
 <!--         para geração de .json -->
 <!--         <appender-ref ref="jsonFile" />-->
